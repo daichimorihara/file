@@ -18,7 +18,7 @@ jobs:
 
       -name: again
         run: |
-          echo aaa > text.txt
+          echo aaaaa > text.txt
 
       -name: last
         run: cat text.txt
