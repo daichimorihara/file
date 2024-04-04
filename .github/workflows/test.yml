@@ -1,0 +1,27 @@
+name: Pull request closing workflow
+
+on:
+  pull_request:
+
+jobs:
+  filecreation:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: put
+        run: |
+         prefix=$(echo we are creature)
+         echo "PREFIX=$prefix" >> $GITHUB_ENV
+
+      -name: test
+        run: echo ${{ env.PREFIX }}
+
+
+      -name: again
+        run: |
+          echo aaa > text.txt
+
+      -name: last
+        run: cat text.txt
+
+
+
