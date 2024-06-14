@@ -1,0 +1,462 @@
+{
+    "containerDefinitions": [
+      {
+        "name": "migration",
+        "essential": true,
+        "secrets": [
+          {
+            "name": "ENVIRONMENT",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/environment"
+          },
+          {
+            "name": "ACCESS_TOKEN_TIMEOUT",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/access-token-timeout"
+          },
+          {
+            "name": "AWS_MAIL_REGION",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/aws-mail-region"
+          },
+          {
+            "name": "AWS_S3_BUCKET_CONTRACT",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/aws-s3-bucket-contract"
+          },
+          {
+            "name": "AWS_S3_BUCKET_CSV",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/aws-s3-bucket-csv"
+          },
+          {
+            "name": "AWS_S3_BUCKET_EMAIL",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/aws-s3-bucket-email"
+          },
+          {
+            "name": "AWS_S3_BUCKET_IMAGE",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/aws-s3-bucket-image"
+          },
+          {
+            "name": "AWS_S3_BUCKET_REPORT",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/aws-s3-bucket-report"
+          },
+          {
+            "name": "AWS_S3_PRIVATE_BUCKET",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/aws-s3-private-bucket"
+          },
+          {
+            "name": "AWS_S3_PRIVATE_CL_CS_BUCKET",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/aws-s3-private-cl-cs-bucket"
+          },
+          {
+            "name": "AWS_S3_REGION",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/aws-s3-region"
+          },
+          {
+            "name": "BACKUP_MAIL_BUCKET",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/backup-mail-bucket"
+          },
+          {
+            "name": "CACHE_TIME_OUT_CITY_DETAIL",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/cache-time-out-city-detail"
+          },
+          {
+            "name": "CACHE_TIME_OUT_PARKING_NUMBER",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/cache-time-out-parking-number"
+          },
+          {
+            "name": "CACHE_TIME_OUT_PARKING_SUMMARY",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/cache-time-out-parking-summary"
+          },
+          {
+            "name": "CACHE_TIME_OUT_TRAINLINE_DETAIL",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/cache-time-out-trainline-detail"
+          },
+          {
+            "name": "CACHE_TIME_OUT_TRANSACTION_FAIL_LIST",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/cache-time-out-transaction-fail-list"
+          },
+          {
+            "name": "CUSTOMER_APPLICATION_TOKEN_TIMEOUT",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/customer-application-token-timeout"
+          },
+          {
+            "name": "CUSTOMER_FRONTEND_URL",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/customer-frontend-url"
+          },
+          {
+            "name": "MANAGER_FRONTEND_URL",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/manager-frontend-url"
+          },
+          {
+            "name": "DEFAULT_RADIUS_SEARCHING",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/default-radius-searching"
+          },
+          {
+            "name": "DJANGO_ACCESS_LOG_FILE",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/django-access-log-file"
+          },
+          {
+            "name": "DJANGO_ERROR_LOG_FILE",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/django-error-log-file"
+          },
+          {
+            "name": "DJANGO_INFO_LOG_FILE",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/django-info-log-file"
+          },
+          {
+            "name": "DJANGO_LOG_LEVEL",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/django-log-level"
+          },
+          {
+            "name": "DJANGO_SETTINGS_MODULE",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/django-settings-module"
+          },
+          {
+            "name": "DJANGO_DEBUG",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/django-debug"
+          },
+          {
+            "name": "EMAIL_CS_SUPPORT_REPORT",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/email-cs-support-report"
+          },
+          {
+            "name": "EMAIL_INTERNAL_REPORT",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/email-internal-report"
+          },
+          {
+            "name": "EMAIL_NO_REPLY",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/email-no-reply"
+          },
+          {
+            "name": "EMAIL_SUPPORT",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/email-support"
+          },
+          {
+            "name": "EMAIL_SYSTEM",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/email-system"
+          },
+          {
+            "name": "MAIL_DOMAIN",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/mail-domain"
+          },
+          {
+            "name": "GMO_API_URL",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/gmo-api-url"
+          },
+          {
+            "name": "EMPTY_SITUATION_CONTACT_TOKEN_TIMEOUT",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/empty-situation-contact-token-timeout"
+          },
+          {
+            "name": "IS_CALL_NC_API",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/is-call-nc-api"
+          },
+          {
+            "name": "LANG",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/lang"
+          },
+          {
+            "name": "LC_CTYPE",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/lc-ctype"
+          },
+          {
+            "name": "RESET_PASSWORD_TOKEN_TIMEOUT",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/reset-password-token-timeout"
+          },
+          {
+            "name": "ZENDESK_MAIL",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/zendesk-mail"
+          },
+          {
+            "name": "SEND_MAIL_FROM",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/send-mail-from"
+          },
+          {
+            "name": "CELERY_BROKER_URL",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/celery-broker-url"
+          },
+          {
+            "name": "REDIS_LOCATION",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/redis-location"
+          },
+          {
+            "name": "SYSTEM_USER_ID",
+            "valueFrom": "/pd/{{ must_env `ENV` }}/backend/system-user-id"
+          },
+          {
+            "name": "CRYPTO_KEY",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:CRYPTO_KEY::"
+          },
+          {
+            "name": "DB_HOST",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:DB_HOST::"
+          },
+          {
+            "name": "DB_NAME",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:DB_NAME::"
+          },
+          {
+            "name": "DB_PASSWORD",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:DB_PASSWORD::"
+          },
+          {
+            "name": "DB_PORT",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:DB_PORT::"
+          },
+          {
+            "name": "DB_USER",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:DB_USER::"
+          },
+          {
+            "name": "DIGITAL_ID_FILE_NAME",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:DIGITAL_ID_FILE_NAME::"
+          },
+          {
+            "name": "DIGITAL_ID_PASSWORD",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:DIGITAL_ID_PASSWORD::"
+          },
+          {
+            "name": "DJANGO_SECRET_KEY",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:DJANGO_SECRET_KEY::"
+          },
+          {
+            "name": "EMAIL_NOTIFICATION_TOKEN",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:EMAIL_NOTIFICATION_TOKEN::"
+          },
+          {
+            "name": "BOUNCE_EMAIL_TOKEN",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:BOUNCE_EMAIL_TOKEN::"
+          },
+          {
+            "name": "GMO_ID",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:GMO_ID::"
+          },
+          {
+            "name": "GMO_KEY_HASH",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:GMO_KEY_HASH::"
+          },
+          {
+            "name": "GMO_NOTIFICATION_TOKEN",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:GMO_NOTIFICATION_TOKEN::"
+          },
+          {
+            "name": "GMO_PASSWORD",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:GMO_PASSWORD::"
+          },
+          {
+            "name": "GMO_SITE_ID",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:GMO_SITE_ID::"
+          },
+          {
+            "name": "GMO_SITE_PASSWORD",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:GMO_SITE_PASSWORD::"
+          },
+          {
+            "name": "GMO_TOKEN_PUBKEY",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:GMO_TOKEN_PUBKEY::"
+          },
+          {
+            "name": "IP_WHITE_LIST",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:IP_WHITE_LIST::"
+          },
+          {
+            "name": "NC_API_KEY",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:NC_API_KEY::"
+          },
+          {
+            "name": "SENDGRID_API_KEY",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:SENDGRID_API_KEY::"
+          },
+          {
+            "name": "READ_REPLICA_HOST",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:READ_REPLICA_HOST::"
+          },
+          {
+            "name": "READ_REPLICA_NAME",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:READ_REPLICA_NAME::"
+          },
+          {
+            "name": "READ_REPLICA_PASSWORD",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:READ_REPLICA_PASSWORD::"
+          },
+          {
+            "name": "READ_REPLICA_PORT",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:READ_REPLICA_PORT::"
+          },
+          {
+            "name": "READ_REPLICA_USER",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:READ_REPLICA_USER::"
+          },
+          {
+            "name": "REMITTANCE_REPORT_SETTING_PASSWORD_SECRET_SALT",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:REMITTANCE_REPORT_SETTING_PASSWORD_SECRET_SALT::"
+          },
+          {
+            "name": "GITHUB_MACHINE_ACCOUNT_TOKEN_FOR_BACKEND",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:GITHUB_MACHINE_ACCOUNT_TOKEN_FOR_BACKEND::"
+          },
+          {
+            "name": "GOOGLE_MAP_API_KEY",
+            "valueFrom": "{{ must_env `SECRETS_MANAGER_ARN` }}:GOOGLE_MAP_API_KEY::"
+          }
+        ],
+        "environment": [
+          {
+            "name": "APPLICATION_NAME",
+            "value": "backend-migration"
+          },
+          {
+            "name": "DD_TRACE_SAMPLE_RATE",
+            "value": "0.01"
+          },
+          {
+            "name": "OTEL_EXPORT_TO_DATADOG_AGENT",
+            "value": "False"
+          },
+          {
+            "name": "DD_ENV",
+            "value": "{{ must_env `DD_ENV` }}"
+          },
+          {
+            "name": "DD_SERVICE",
+            "value": "backend-migration"
+          },
+          {
+            "name": "DD_VERSION",
+            "value": "{{ env `DD_VERSION` `undefined` }}"
+          },
+          {
+            "name": "DD_TRACE_ENABLED",
+            "value": "{{ must_env `DD_APM_ENABLED` }}"
+          },
+          {
+            "name": "DD_INSTRUMENTATION_TELEMETRY_ENABLED",
+            "value": "{{ must_env `DD_APM_ENABLED` }}"
+          }
+        ],
+        "dockerLabels": {
+          "com.datadoghq.tags.env": "{{ must_env `DD_ENV` }}",
+          "com.datadoghq.tags.service": "backend-migration",
+          "com.datadoghq.tags.version": "{{ env `DD_VERSION` `undefined` }}"
+        },
+        "logConfiguration": {
+          "logDriver": "awsfirelens",
+          "options": {
+            "Name": "datadog",
+            "Host": "http-intake.logs.datadoghq.com",
+            "dd_service": "backend-migration",
+            "dd_source": "django",
+            "dd_message_key": "log",
+            "dd_tags": "env:{{ must_env `DD_ENV` }},version:{{ env `DD_VERSION` `undefined` }},feature_name:{{ env `TASK_ID` `undefined` }}",
+            "TLS": "on",
+            "provider": "ecs"
+          },
+          "secretOptions": [
+            {
+              "name": "apikey",
+              "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:131151490157:secret:DdApiKey-E9wv0f"
+            }
+          ]
+        },
+        "command": [
+          "ddtrace-run",
+          "python",
+          "manage.py",
+          "migrate",
+          "--noinput"
+        ],
+        "dependsOn": [
+          {
+            "containerName": "datadog-agent",
+            "condition": "START"
+          }
+        ]
+      },
+      {
+        "name": "datadog-agent",
+        "essential": true,
+        "image": "public.ecr.aws/datadog/agent:7",
+        "logConfiguration": {
+          "logDriver": "awsfirelens",
+          "options": {
+            "Name": "datadog",
+            "Host": "http-intake.logs.datadoghq.com",
+            "dd_service": "backend-migration-datadog-agent",
+            "dd_source": "datadog-agent",
+            "dd_message_key": "log",
+            "dd_tags": "env:{{ must_env `DD_ENV` }},version:{{ env `DD_VERSION` `undefined` }},feature_name:{{ env `TASK_ID` `undefined` }}",
+            "TLS": "on",
+            "provider": "ecs"
+          },
+          "secretOptions": [
+            {
+              "name": "apikey",
+              "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:131151490157:secret:DdApiKey-E9wv0f"
+            }
+          ]
+        },
+        "portMappings": [
+          {
+            "hostPort": 8126,
+            "protocol": "tcp",
+            "containerPort": 8126
+          }
+        ],
+        "environment": [
+          {
+            "name": "ECS_FARGATE",
+            "value": "true"
+          }
+        ],
+        "secrets": [
+          {
+            "name": "DD_API_KEY",
+            "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:131151490157:secret:DdApiKey-E9wv0f"
+          }
+        ]
+      },
+      {
+        "name": "log_router",
+        "essential": true,
+        "image": "131151490157.dkr.ecr.ap-northeast-1.amazonaws.com/park-direct-fluent-bit:latest",
+        "firelensConfiguration": {
+          "type": "fluentbit",
+          "options": {
+            "config-file-type": "file",
+            "config-file-value": "/extra.conf",
+            "enable-ecs-log-metadata": "true"
+          }
+        },
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "secretOptions": [],
+          "options": {
+            "awslogs-group": "/aws/fluentbit/ecs-pd-{{ must_env `DD_ENV` }}/migration",
+            "awslogs-region": "ap-northeast-1",
+            "awslogs-stream-prefix": "firelens"
+          }
+        }
+      }
+    ],
+    "cpu": "2048",
+    "memory": "{{ must_env `MIGRATION_TASK_MEMORY` }}",
+    "executionRoleArn": "{{ must_env `EXECUTION_ROLE_ARN` }}",
+    "taskRoleArn": "{{ must_env `TASK_ROLE_ARN` }}",
+    "family": "{{ must_env `MIGRATION_TASK_FAMILY` }}",
+    "networkMode": "awsvpc",
+    "runtimePlatform": {
+      "cpuArchitecture": "X86_64",
+      "operatingSystemFamily": "LINUX"
+    },
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "tags": [
+      {
+        "key": "Environment",
+        "value": "{{ must_env `ENV`}}"
+      },
+      {
+        "key": "Name",
+        "value": "{{ must_env `MIGRATION_TASK_FAMILY`}}"
+      }
+    ]
+  }
+  
