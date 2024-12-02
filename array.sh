@@ -1,11 +1,8 @@
-#!/bin/bash
+'year')
+    month = event.get('month')
+    day = event.get('day')
+    hour = event.get('hour')
+    minute = event.get('minute')
+    second = event.get('second')
 
-input_str="SRE-2000"
-
-normalized_str=$(echo "${input_str##*/}" | tr '[:upper:]' '[:lower:]')
-echo "$normalized_str"
-
-inpu_str="feature/SRE-2000"
-
-normalize_str=$(echo "${inpu_str##*/}" | tr '[:upper:]' '[:lower:]')
-echo "$normalize_str"
+{"year": 2020, "month": 2, "day": 29, "hour": 23, "minute": 59, "second": 59}

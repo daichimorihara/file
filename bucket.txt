@@ -1,0 +1,33 @@
+ GPT
+{
+  "BackupPlanName": "MyBackupPlan",
+  "Rules": [
+    {
+      "RuleName": "DailyBackup",
+      "TargetBackupVaultName": "MyBackupVault",
+      "ScheduleExpression": "cron(0 12 * * ? *)",
+      "StartWindowMinutes": 60,
+      "CompletionWindowMinutes": 180,
+      "Lifecycle": {
+        "MoveToColdStorageAfterDays": 30,
+        "DeleteAfterDays": 365
+      },
+      "RecoveryPointTags": {
+        "Project": "MyProject",
+        "Environment": "Production"
+      },
+      "CopyActions": [
+        {
+          "DestinationBackupVaultArn": "arn:aws:backup:us-west-2:123456789012:backup-vault:MyBackupVault",
+          "Lifecycle": {
+            "MoveToColdStorageAfterDays": 30,
+            "DeleteAfterDays": 365
+          },
+          "EncryptionConfiguration": {
+            "KmsKeyArn": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key-id"
+          }
+        }
+      ]
+    }
+  ]
+}
