@@ -11,6 +11,10 @@ jobs:
     name: feio
     runs-on: ubuntu-20.04
     steps:
+      - name: set
+        run: |
+         echo "BRA=dev" >> $GITHUB_ENV
+
       - name: put
         run: |
          prefix=$(echo we are creature)
@@ -22,4 +26,8 @@ jobs:
          echo "BRA=dev" >> $GITHUB_ENV
          echo "fewjo: ${{ env.BRA }}"
          echo "BRA=changed" >> $GITHUB_ENV
+
+      - name: trhee
+        run: |
          echo "fweno: ${{ env.BRA }}"
+
