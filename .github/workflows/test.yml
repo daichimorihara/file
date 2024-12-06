@@ -12,17 +12,8 @@ jobs:
         run: |
          prefix=$(echo we are creature)
          echo "PREFIX=$prefix" >> $GITHUB_ENV
-
-      -name: test
-        run: echo ${{ env.PREFIX }}
-
-
-      -name: again
-        run: |
-          echo aaaaa > text.txt
-
-      -name: last
-        run: cat text.txt
-
-
-
+         echo ${{ github.ref }}
+         echo ${{ github.head_ref }}
+         echo ${{ github.base_ref }}
+         echo ${{ github.ref_name }}
+         
