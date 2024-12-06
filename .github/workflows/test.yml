@@ -29,5 +29,5 @@ jobs:
 
       - name: trhee
         run: |
-         echo "fweno: ${{ env.BRA }}"
+         echo "fweno: ${{ env.BRA.toUpperCase() }}"
 
