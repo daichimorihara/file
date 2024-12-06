@@ -3,6 +3,9 @@ name: Pull request closing workflow
 on:
   pull_request:
 
+env:
+  AWS_REGION: ap-northeast-1
+
 jobs:
   filecreation:
     name: feio
