@@ -16,8 +16,7 @@ jobs:
          echo ${{ github.head_ref }}
          echo ${{ github.base_ref }}
          echo ${{ github.ref_name }}
-         
-        echo "BRA=dev" >> $GITHUB_ENV
-        echo ${{ env.BRA }}
-        echo "BRA=changed" >> $GITHUB_ENV
-        echo ${{ env.BRA }}
+         echo "BRA=dev" >> $GITHUB_ENV
+         echo ${{ env.BRA }}
+         echo "BRA=changed" >> $GITHUB_ENV
+         echo ${{ env.BRA }}
