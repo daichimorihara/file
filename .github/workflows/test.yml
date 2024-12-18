@@ -2,27 +2,37 @@ name: Pull request closing workflow
 
 on:
   pull_request:
+    types: [labeled, unlabeled, synchronize, closed]
+
+env:
+  AWS_REGION: ap-northeast-1
 
 jobs:
   filecreation:
     name: feio
     runs-on: ubuntu-20.04
     steps:
-      - name: put
+      # - name: set
+      #   run: |
+      #    echo "BRA=dev" >> $GITHUB_ENV
+
+      # - name: put
+      #   run: |
+      #    prefix=$(echo we are creature)
+      #    echo "PREFIX=$prefix" >> $GITHUB_ENV
+      #    echo ${{ github.ref }}
+      #    echo ${{ github.head_ref }}
+      #    echo ${{ github.base_ref }}
+      #    echo ${{ github.ref_name }}
+      #    echo "BRA=dev" >> $GITHUB_ENV
+      #    echo "fewjo: ${{ env.BRA }}"
+      #    echo "BRA=changed" >> $GITHUB_ENV
+
+      # - name: trhee
+      #   run: |
+      #    echo "fweno: ${{ env.BRA }}"
+      
+
+      - name: concurrency group test
         run: |
-         prefix=$(echo we are creature)
-         echo "PREFIX=$prefix" >> $GITHUB_ENV
-
-      -name: test
-        run: echo ${{ env.PREFIX }}
-
-
-      -name: again
-        run: |
-          echo aaaaa > text.txt
-
-      -name: last
-        run: cat text.txt
-
-
-
+         echo "cd-${{ github.workflow }}-${{ github.event.label.name }}-${{ github.ref }}"

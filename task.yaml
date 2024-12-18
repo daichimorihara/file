@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:961921042948:task-definition/ecs-task-definition-pd-biz-dev-backend:23",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:961921042948:task-definition/test-error:4",
     "containerDefinitions": [
         {
             "name": "nginx",
@@ -39,23 +39,16 @@
                 "com.datadoghq.tags.env": "biz"
             },
             "logConfiguration": {
-                "logDriver": "awsfirelens",
+                "logDriver": "awslogs",
                 "options": {
-                    "dd_message_key": "log",
-                    "provider": "ecs",
-                    "dd_service": "biz-backend-api-nginx",
-                    "Host": "http-intake.logs.datadoghq.com",
-                    "TLS": "on",
-                    "dd_source": "nginx",
-                    "dd_tags": "env:dev,version:aaa,feature_name:undefined",
-                    "Name": "datadog"
+                    "awslogs-group": "/ecs/test-error",
+                    "mode": "non-blocking",
+                    "awslogs-create-group": "true",
+                    "max-buffer-size": "25m",
+                    "awslogs-region": "ap-northeast-1",
+                    "awslogs-stream-prefix": "ecs"
                 },
-                "secretOptions": [
-                    {
-                        "name": "apikey",
-                        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:961921042948:secret:DdApiKey-zgCUgw"
-                    }
-                ]
+                "secretOptions": []
             },
             "systemControls": []
         },
@@ -131,117 +124,32 @@
                     "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:961921042948:secret:django/dev/scret_key-Aip5gy:SecretKey::"
                 }
             ],
-            "dependsOn": [
-                {
-                    "containerName": "datadog-agent",
-                    "condition": "START"
-                }
-            ],
-            "logConfiguration": {
-                "logDriver": "awsfirelens",
-                "options": {
-                    "dd_message_key": "log",
-                    "provider": "ecs",
-                    "dd_service": "backend-api-app-ecs",
-                    "Host": "http-intake.logs.datadoghq.com",
-                    "TLS": "on",
-                    "dd_source": "django",
-                    "dd_tags": "env:dev,version:test",
-                    "Name": "datadog"
-                },
-                "secretOptions": [
-                    {
-                        "name": "apikey",
-                        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:961921042948:secret:DdApiKey-zgCUgw"
-                    }
-                ]
-            },
-            "systemControls": []
-        },
-        {
-            "name": "log_router",
-            "image": "961921042948.dkr.ecr.ap-northeast-1.amazonaws.com/pd-biz-fluent-bit:latest",
-            "cpu": 0,
-            "memoryReservation": 51,
-            "portMappings": [],
-            "essential": true,
-            "environment": [],
-            "mountPoints": [],
-            "volumesFrom": [],
-            "user": "0",
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/aws/fluentbit/ecs-pd-biz-dev",
+                    "awslogs-group": "/ecs/test-error",
+                    "mode": "non-blocking",
+                    "awslogs-create-group": "true",
+                    "max-buffer-size": "25m",
                     "awslogs-region": "ap-northeast-1",
-                    "awslogs-stream-prefix": "firelens"
+                    "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
-            },
-            "systemControls": [],
-            "firelensConfiguration": {
-                "type": "fluentbit",
-                "options": {
-                    "config-file-type": "file",
-                    "config-file-value": "/fluent-bit/configs/parse-json.conf",
-                    "enable-ecs-log-metadata": "true"
-                }
-            }
-        },
-        {
-            "name": "datadog-agent",
-            "image": "public.ecr.aws/datadog/agent:7",
-            "cpu": 0,
-            "portMappings": [],
-            "essential": true,
-            "environment": [
-                {
-                    "name": "DD_SITE",
-                    "value": "datadoghq.com"
-                },
-                {
-                    "name": "ECS_FARGATE",
-                    "value": "true"
-                }
-            ],
-            "mountPoints": [],
-            "volumesFrom": [],
-            "secrets": [
-                {
-                    "name": "DD_API_KEY",
-                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:961921042948:secret:DdApiKey-zgCUgw"
-                }
-            ],
-            "logConfiguration": {
-                "logDriver": "awsfirelens",
-                "options": {
-                    "dd_message_key": "log",
-                    "provider": "ecs",
-                    "dd_service": "backend-api-datadog-agent",
-                    "Host": "http-intake.logs.datadoghq.com",
-                    "TLS": "on",
-                    "dd_source": "datadog-agent",
-                    "dd_tags": "env:dev,version:test",
-                    "Name": "datadog"
-                },
-                "secretOptions": [
-                    {
-                        "name": "apikey",
-                        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:961921042948:secret:DdApiKey-zgCUgw"
-                    }
-                ]
             },
             "systemControls": []
         }
     ],
-    "family": "ecs-task-definition-pd-biz-dev-backend",
+    "family": "test-error",
     "taskRoleArn": "arn:aws:iam::961921042948:role/ECSTaskRoleForBackend",
     "executionRoleArn": "arn:aws:iam::961921042948:role/ECSTaskExecutionRoleForBackendDev",
     "networkMode": "awsvpc",
-    "revision": 23,
+    "revision": 4,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
         {
             "name": "ecs.capability.execution-role-awslogs"
         },
@@ -249,16 +157,13 @@
             "name": "com.amazonaws.ecs.capability.ecr-auth"
         },
         {
-            "name": "ecs.capability.firelens.options.config.file"
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
         },
         {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+            "name": "ecs.capability.secrets.asm.environment-variables"
         },
         {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.logging-driver.awsfirelens"
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
@@ -273,22 +178,7 @@
             "name": "ecs.capability.task-eni"
         },
         {
-            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-        },
-        {
-            "name": "ecs.capability.firelens.fluentbit"
-        },
-        {
-            "name": "ecs.capability.secrets.asm.environment-variables"
-        },
-        {
-            "name": "ecs.capability.container-ordering"
-        },
-        {
-            "name": "ecs.capability.secrets.asm.bootstrap.log-driver"
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
         }
     ],
     "placementConstraints": [],
@@ -305,7 +195,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-11-29T07:00:34.038Z",
+    "registeredAt": "2024-12-02T03:31:49.887Z",
     "registeredBy": "arn:aws:sts::961921042948:assumed-role/AWSReservedSSO_InfraDeveloper_2cf4d90630278143/daichi_morihara@nealle.com",
     "tags": []
 }
