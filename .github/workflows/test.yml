@@ -11,23 +11,26 @@ jobs:
     name: feio
     runs-on: ubuntu-20.04
     steps:
-      - name: set
-        run: |
-         echo "BRA=dev" >> $GITHUB_ENV
+      # - name: set
+      #   run: |
+      #    echo "BRA=dev" >> $GITHUB_ENV
 
-      - name: put
-        run: |
-         prefix=$(echo we are creature)
-         echo "PREFIX=$prefix" >> $GITHUB_ENV
-         echo ${{ github.ref }}
-         echo ${{ github.head_ref }}
-         echo ${{ github.base_ref }}
-         echo ${{ github.ref_name }}
-         echo "BRA=dev" >> $GITHUB_ENV
-         echo "fewjo: ${{ env.BRA }}"
-         echo "BRA=changed" >> $GITHUB_ENV
+      # - name: put
+      #   run: |
+      #    prefix=$(echo we are creature)
+      #    echo "PREFIX=$prefix" >> $GITHUB_ENV
+      #    echo ${{ github.ref }}
+      #    echo ${{ github.head_ref }}
+      #    echo ${{ github.base_ref }}
+      #    echo ${{ github.ref_name }}
+      #    echo "BRA=dev" >> $GITHUB_ENV
+      #    echo "fewjo: ${{ env.BRA }}"
+      #    echo "BRA=changed" >> $GITHUB_ENV
 
-      - name: trhee
-        run: |
-         echo "fweno: ${{ env.BRA.toUpperCase() }}"
+      # - name: trhee
+      #   run: |
+      #    echo "fweno: ${{ env.BRA }}"
 
+      - name: concurrency group test
+        run: |
+         echo "cd-${{ github.workflow }}-${{ github.event.label.name }}-${{ github.ref }}"
