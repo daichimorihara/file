@@ -1,16 +1,23 @@
 #!/bin/bash
+ENV=feat
+NAME=feature-SRE-3746
+PROFILE_NAME=pd
 
-set -eux
-prefix=("CSG-1097" "CSG-784" "CLGB-1280" "CSG-977" "CSG-1103" "CLGB-1280")
+TASK_ID=$(aws ecs list-tasks \
+  --region ap-northeast-1 \
+  --cluster ecscluster-pd-"$ENV" \
+  --service-name ecsservice-pd-"$NAME"-web \
+  --desired-status RUNNING \
+  --launch-type FARGATE \
+  --query "taskArns[0]" \
+  --output text \
+  --profile "$PROFILE_NAME" |
+  cut -d "/" -f 3)
 
-for p in "${prefix[@]}"; do
-
-    families=("ecs-task-definition-pd-feat-$p-backend-batch" "ecs-task-definition-pd-feat-$p-backend-migration" "ecs-task-definition-pd-feat-$p-backend-web" "ecs-task-definition-pd-feat-$p-backend-worker")
-
-    for family in "${families[@]}"; do
-        aws ecs list-task-definitions --family-prefix "$family" --profile pd | jq -r '.taskDefinitionArns[]' | \
-        xargs -I {} aws ecs deregister-task-definition --task-definition {} --profile pd >/dev/null
-        sleep 4
-    done
-
-done
+aws ecs execute-command \
+  --region ap-northeast-1 \
+  --cluster ecscluster-pd-"$ENV" \
+  --container nginx --interactive \
+  --command bash \
+  --task "$TASK_ID" \
+  --profile "$PROFILE_NAME"

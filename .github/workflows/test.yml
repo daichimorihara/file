@@ -1,28 +1,53 @@
-name: Pull request closing workflow
+name: PD Biz Deployment
 
 on:
-  pull_request:
+  push:
+    branches:
+      - develop
+  release:
+    types: [published]
+  # pull_request:
+  #   types: [labeled, synchronize]
+
+concurrency: cd-${{ github.ref_name }}
+
+env:
+  AWS_ASSUME_ROLE: arn:aws:iam::961921042948:role/ecs-pd-biz-cicd-role
+  AWS_REGION: ap-northeast-1
 
 jobs:
-  filecreation:
-    name: feio
-    runs-on: ubuntu-20.04
+  check_release_tag_and_branch:
+    name: check release tag and branch
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      id-token: write
+    timeout-minutes: 15
     steps:
-      - name: put
-        run: |
-         prefix=$(echo we are creature)
-         echo "PREFIX=$prefix" >> $GITHUB_ENV
+      - run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            if [[ "${{ github.event.release.target_commitish }}" != "main" ]]; then
+              echo "::error:: リリースタグを作成する際は、mainブランチに対して作成してください。"
+              exit 1
 
-      -name: test
-        run: echo ${{ env.PREFIX }}
+            elif ! [[ "${{ github.event.release.tag_name }}" =~ ^v.*  ]]; then
+              echo "::error:: releaseタグは 'v' から始まるバージョン番号を指定してください。"
+              exit 1
+            fi
+          fi
 
+  build_and_push_image:
+    needs: check_release_tag_and_branch
+    strategy:
+      matrix:
+        image-name: [backend]
+    name: Build and Push ${{ matrix.image-name }} Image to Amazon ECR Private
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      id-token: write
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # 3.5.2
 
-      -name: again
-        run: |
-          echo aaaaa > text.txt
-
-      -name: last
-        run: cat text.txt
-
-
-
+      - uses: ./.github/actions/set-env-variables
