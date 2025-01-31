@@ -16,10 +16,31 @@ env:
   AWS_REGION: ap-northeast-1
 
 jobs:
+  check_release_tag_and_branch:
+    name: check release tag and branch
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      id-token: write
+    timeout-minutes: 15
+    steps:
+      - run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            if [[ "${{ github.event.release.target_commitish }}" != "main" ]]; then
+              echo "::error:: リリースタグを作成する際は、mainブランチに対して作成してください。"
+              exit 1
+
+            elif ! [[ "${{ github.event.release.tag_name }}" =~ ^v.*  ]]; then
+              echo "::error:: releaseタグは 'v' から始まるバージョン番号を指定してください。"
+              exit 1
+            fi
+          fi
+
   build_and_push_image:
+    needs: check_release_tag_and_branch
     strategy:
       matrix:
-        image-name: [backend, nginx, fluent-bit]
+        image-name: [backend]
     name: Build and Push ${{ matrix.image-name }} Image to Amazon ECR Private
     runs-on: ubuntu-22.04
     permissions:
