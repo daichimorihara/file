@@ -15,7 +15,7 @@ runs:
             echo "DD_VERSION=${{ github.sha }}" >>$GITHUB_ENV
             echo "NOTIFY_SLACK_CHANNEL=#dev_pd_biz_develop" >>$GITHUB_ENV
             echo "SLACK_WEBHOOK=https://hooks.slack.com/services/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" >>$GITHUB_ENV
-
+            echo "IMAGE_TAG=${{ github.sha }}" >>$GITHUB_ENV
 
     - name: set variables for prod
       if: github.event_name == 'release'
@@ -27,3 +27,4 @@ runs:
             echo "DD_VERSION=${{ github.event.release.tag_name }}" >>$GITHUB_ENV
             echo "NOTIFY_SLACK_CHANNEL=#dev_pd_biz_production" >>$GITHUB_ENV
             echo "SLACK_WEBHOOK=https://hooks.slack.com/services/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" >>$GITHUB_ENV
+            echo "IMAGE_TAG=${{ github.ref_name }}" >>$GITHUB_ENV
