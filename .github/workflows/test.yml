@@ -51,15 +51,15 @@ jobs:
     - name: Replace feature prefix placeholder
       shell: bash
       run: |
-        ENV_VARS_FEAT=""NEXT_PUBLIC_BACKEND_API_URL"="https://<<feature_prefix>>-api.feat.park-direct.jp","NEXT_PUBLIC_SITE_HOSTING_URL"="https://<<feature_prefix>>.feat.onedaypark.jp""
-        SUB_DOMAIN="https://<<feature_prefix>>.feat.onedaypark.jp"
+        ENV_VARS_FEAT=""NEXT_PUBLIC_BACKEND_API_URL"="https://__feature_prefix__-api.feat.park-direct.jp","NEXT_PUBLIC_SITE_HOSTING_URL"="https://<<feature_prefix>>.feat.onedaypark.jp""
+        SUB_DOMAIN="https://__feature_prefix__.feat.onedaypark.jp"
 
         echo $ENV_VARS_FEAT
         echo $SUB_DOMAIN
         REPLACEMENT="zxxxxxxxx"
 
-        echo "ENV_VARIABLES_FOR_FEAT_BACKEND=${ENV_VARS_FEAT//<<feature_prefix>>/$REPLACEMENT}" >> $GITHUB_ENV
-        echo "SUB_DOMAIN_PREFIX=${SUB_DOMAIN//<<feature_prefix>>/$REPLACEMENT}" >> $GITHUB_ENV
+        echo "ENV_VARIABLES_FOR_FEAT_BACKEND=${ENV_VARS_FEAT//__feature_prefix__/$REPLACEMENT}" >> $GITHUB_ENV
+        echo "SUB_DOMAIN_PREFIX=${SUB_DOMAIN//__feature_prefix__/$REPLACEMENT}" >> $GITHUB_ENV
 
         echo ${{ env.ENV_VARIABLES_FOR_FEAT_BACKEND }}
         echo ${{ env.SUB_DOMAIN_PREFIX }}
