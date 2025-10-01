@@ -51,7 +51,7 @@ jobs:
     - name: Replace feature prefix placeholder
       shell: bash
       run: |
-        ENV_VARS_FEAT=""NEXT_PUBLIC_BACKEND_API_URL"="https://__feature_prefix__-api.feat.park-direct.jp","NEXT_PUBLIC_SITE_HOSTING_URL"="https://<<feature_prefix>>.feat.onedaypark.jp""
+        ENV_VARS_FEAT=""NEXT_PUBLIC_BACKEND_API_URL"="https://__feature_prefix__-api.feat.park-direct.jp","NEXT_PUBLIC_SITE_HOSTING_URL"="https://__feature_prefix__.feat.onedaypark.jp""
         SUB_DOMAIN="https://__feature_prefix__.feat.onedaypark.jp"
 
         echo $ENV_VARS_FEAT
