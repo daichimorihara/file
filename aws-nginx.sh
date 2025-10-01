@@ -1,12 +1,11 @@
 #!/bin/bash
-ENV=feat
-NAME=feature-CLGB-2568
-PROFILE_NAME=pd
+ENV=dev
+PROFILE_NAME=biz
 
 TASK_ID=$(aws ecs list-tasks \
   --region ap-northeast-1 \
-  --cluster ecscluster-pd-"$ENV" \
-  --service-name ecsservice-pd-"$NAME"-web \
+  --cluster ecscluster-pd-biz-"$ENV" \
+  --service-name ecsservice-pd-biz-"$ENV"-web \
   --desired-status RUNNING \
   --launch-type FARGATE \
   --query "taskArns[0]" \
@@ -16,8 +15,11 @@ TASK_ID=$(aws ecs list-tasks \
 
 aws ecs execute-command \
   --region ap-northeast-1 \
-  --cluster ecscluster-pd-"$ENV" \
+  --cluster ecscluster-pd-biz-"$ENV" \
   --container web --interactive \
-  --command bash \
+  --command sh \
   --task "$TASK_ID" \
   --profile "$PROFILE_NAME"
+
+
+

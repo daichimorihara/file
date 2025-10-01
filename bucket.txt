@@ -1,33 +1,127 @@
- GPT
-{
-  "BackupPlanName": "MyBackupPlan",
-  "Rules": [
-    {
-      "RuleName": "DailyBackup",
-      "TargetBackupVaultName": "MyBackupVault",
-      "ScheduleExpression": "cron(0 12 * * ? *)",
-      "StartWindowMinutes": 60,
-      "CompletionWindowMinutes": 180,
-      "Lifecycle": {
-        "MoveToColdStorageAfterDays": 30,
-        "DeleteAfterDays": 365
-      },
-      "RecoveryPointTags": {
-        "Project": "MyProject",
-        "Environment": "Production"
-      },
-      "CopyActions": [
-        {
-          "DestinationBackupVaultArn": "arn:aws:backup:us-west-2:123456789012:backup-vault:MyBackupVault",
-          "Lifecycle": {
-            "MoveToColdStorageAfterDays": 30,
-            "DeleteAfterDays": 365
-          },
-          "EncryptionConfiguration": {
-            "KmsKeyArn": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key-id"
-          }
-        }
-      ]
-    }
-  ]
+kbvspr9361purnubibelia6tdm62ebi0goa8de01
+nlf9o68oojcbb9uifq8m9n2ml14u45j32vrmamo1
+qjuhff083lhd8gbv1tjvga1qqorpop3ei3smml81
+stoqi2v4f8jca8gcqhu0rpk2usbbqh25dosqn581
+mbtm5envgln09dloqfq735shcu32rqsebmi3c201
+87dominq90iv8kc1ulkj6k4m9el03iiucvknmh81
+f094r5hnuugcc2egl31c44sgr8tp0n22957dpog1
+q3tc4tmap1rm23ofd2soidhh9qng9i5d8ev2o4g1
+s31r7mo1fjh5ijjomtcou4h0fqfj9ud9k31l2ro1
+8uh9st8oe5pdl391g1pll0asea9jhtajf5qufm81
+uu6nk1lfmba1gq43n1e6dutshdlc2srntktah5g1
+1n9t9q6bp4fd5qi8t7p3f9ohkd1eimofj4c8ld01
+9oob6a224g12ev2ftk11a46hogiosf43qec0kd01
+j7aj3vku4has0qaoas2i94ig1blk1tmmajvmqko1
+ht6a203tvgj3crm17pq79krh2jqltoloor150rg1
+qlcvhmtc1k1q79jlsjdpcfcus40am2t9914dlp01
+n696hvfn73akurhi9cgu41kqca1ih2k4a355gpg1
+udccaaq3i1t4ksajjh1mq77dhdlc2ootscuat401
+i7npapkh8l2uu6vksothm3rjn5cf6li7jm41k901
+l8bje96rq99gincgrfcfuiaqfqfj94hhlsa8de01
+
+
+
+Default agent hold
+Default agent transfer
+Default agent whisper
+Default customer hold
+Default customer queue
+Default customer whisper
+Default outbound
+Default queue transfer
+Park Direct 既契約切替オートコール（w/o コールバック）
+Park Direct 既契約切替オートコール（複数台対応）
+Sample Lambda integration
+Invokes a lambda function to determine information about the user.
+[WIP] 切替_SMS送信2
+[WIP] 切替_インターネット手続き
+[WIP] 切替_携帯番号登録
+[WIP] 切替_郵送手続き
+なかむらてすと
+なかむらてすと２（フロー）
+なかむらてすと２（顧客キュー）
+Customer queue
+オートコール共通：終話
+切替オートコール（ボイスメッセージ）
+拠点閉鎖オートコール
+拠点閉鎖オートコール：入電案内
+拠点閉鎖オートコール：返信フォーム案内
+汎用了承取得オートコールフロー
+汎用了承取得オートコール：入電案内
+汎用了承取得オートコール：返信フォーム案内
+督促オートコール：ライト版
+督促オートコール：問い合わせ先のご連絡
+督促オートコール：折返し希望時間ヒアリング
+
+dev 
+
+locals {
+  use_instance_id = "208e091d-a1c5-4c19-89f4-94583ece9c6a"
+  arn_replacements = {
+    for placeholder, arn in local.arn_map :
+    placeholder => arn
+  }
+
+  other_replacements = {
+    aws_account_id           = "019530722884",
+    pj_env                   = "pd-${var.env}"
+    voice_guidance_s3_bucket = "s3-${local.common_name}-voice-guidance"
+  }
+
+  # 全ての置換対象を一つの辞書にまとめる
+  replacements = merge(local.arn_replacements, local.other_replacements)
+}
+
+import {
+  id = "${local.use_instance_id}:dcc939ee-2bbf-453b-b707-1811ebe03b1d"
+  to = module.test_flow.aws_connect_contact_flow.pd
+}
+
+module "test_flow" {
+  source           = "../../../modules/amazon_connect/contact_flow"
+  instance_id      = local.use_instance_id
+  replacement_dict = local.replacements
+  name             = "Park Direct Terraformテスト用フロー"
+  description      = "Terraformで作成したコンタクトフロー"
+  type             = "CONTACT_FLOW"
+  filename         = "../../../src/amazon_connect/contact_flow_definitions_cc/Park Direct Terraformテスト用フロー.tfpl"
+}
+
+
+
+
+prod
+
+locals {
+  use_instance_id = "e64ba572-29f6-4c54-ba31-67868ba49547"
+
+  arn_replacements = {
+    for placeholder, arn in local.arn_map :
+    placeholder => arn
+  }
+
+  other_replacements = {
+    aws_account_id           = "019530722884",
+    pj_env                   = "pd-${var.env}"
+    voice_guidance_s3_bucket = "s3-${local.common_name}-voice-guidance"
+  }
+
+  # 全ての置換対象を一つの辞書にまとめる
+  replacements = merge(local.arn_replacements, local.other_replacements)
+}
+
+
+module "test_flow" {
+  source           = "../../../modules/amazon_connect/contact_flow"
+  instance_id      = local.use_instance_id
+  replacement_dict = local.replacements
+  name             = "Park Direct Terraformテスト用フロー"
+  description      = "Terraformで作成したコンタクトフロー"
+  type             = "CONTACT_FLOW"
+  filename         = "../../../src/amazon_connect/contact_flow_definitions_cc/Park Direct Terraformテスト用フロー.tfpl"
+}
+
+import {
+  id = "${local.use_instance_id}:935219b7-b732-49d8-82bb-27a1d2a27190"
+  to = module.pd_google_myplace_auto_responder_for_incoming_calls.aws_connect_contact_flow.pd
 }

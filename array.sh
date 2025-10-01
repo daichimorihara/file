@@ -1,21 +1,11 @@
-'year')
-    month = event.get('month')
-    day = event.get('day')
-    hour = event.get('hour')
-    minute = event.get('minute')
-    second = event.get('second')
+#!/bin/bash
 
-{"year": 2020, "month": 2, "day": 29, "hour": 23, "minute": 59, "second": 59}
+aws stepfunctions start-execution \
+--state-machine-arn arn:aws:states:ap-northeast-1:131151490157:stateMachine:test-feat-notification \
+--input '{"githubActions": "failure", "owner": "daichimorihara", "runId": "test", "repoName": "nealle/park-direct-front-customer-pc", "name": "customer-pc"}' \
+--profile pd
 
-::q
 
-export SECRET_KEY=^hgj_55mx4@ov!(m1bw+maaix5jp!yd0wi5=7skes(wae!wgy7
-export DEBUG=true
-export DB_NAME=pd_biz_web
-export DB_USER=postgres
-export DB_PASSWORD=wqj2k2vl
-export DB_HOST=db
-export DB_HOST_RO=db
-export DB_PORT=5432
-export S3_NAME=Bucket-1
-export S3_ENDPOINT_URL=http://s3:9090
+
+
+

@@ -1,0 +1,164 @@
+{
+  "Records": [
+    {
+      "eventSource": "aws:ses",
+      "eventVersion": "1.0",
+      "ses": {
+        "mail": {
+          "timestamp": "2025-06-19T03:55:58.500Z",
+          "source": "daichi_morihara@nealle.com",
+          "messageId": "s1ukef7cos7cvukhg5oi6eumvsfbbf13e6804f01",
+          "destination": [
+            "test@dev.park-direct.jp"
+          ],
+          "headersTruncated": false,
+          "headers": [
+            {
+              "name": "Return-Path",
+              "value": "<daichi_morihara@nealle.com>"
+            },
+            {
+              "name": "Received",
+              "value": "from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173]) by inbound-smtp.us-east-1.amazonaws.com with SMTP id s1ukef7cos7cvukhg5oi6eumvsfbbf13e6804f01 for test@dev.park-direct.jp; Thu, 19 Jun 2025 03:55:58 +0000 (UTC)"
+            },
+            {
+              "name": "X-SES-Spam-Verdict",
+              "value": "PASS"
+            },
+            {
+              "name": "X-SES-Virus-Verdict",
+              "value": "PASS"
+            },
+            {
+              "name": "Received-SPF",
+              "value": "pass (spfCheck: domain of nealle.com designates 209.85.214.173 as permitted sender) client-ip=209.85.214.173; envelope-from=daichi_morihara@nealle.com; helo=mail-pl1-f173.google.com;"
+            },
+            {
+              "name": "Authentication-Results",
+              "value": "amazonses.com; spf=pass (spfCheck: domain of nealle.com designates 209.85.214.173 as permitted sender) client-ip=209.85.214.173; envelope-from=daichi_morihara@nealle.com; helo=mail-pl1-f173.google.com; dkim=pass header.i=@nealle.com; dmarc=pass header.from=nealle.com;"
+            },
+            {
+              "name": "X-SES-RECEIPT",
+              "value": "AEFBQUFBQUFBQUFFdFhhU1g0L3VmQkVBQWJFWWdreWYrMkZ2bzBUbmJVcHJ5M25IbDlneHZ2TmVNWllHQWxKMHhqa3hYVWhIdFBQMWRwemlSN0xFWWpadThDZUQ3UUQvRWhrbVdRVmZIMTFocmxpeW1keHFialV4TUhsV1YwNDNER3Qzclg0cGpCVnlCUkZEWXU0VFRoVUxDbGRZZU9ZV1B5d2dhaktqUUpNVmJySE1SMXF0aFNxM1k0dGVQMDAzd3hKeHhuaG54ZFFCY1ltcFNENmIxZXdCUFMvdjh2NzhUYmJwTWNBYkNrdEJIUXFvMzVxakxGTlQxOUZMYThiMFhyY3dBbDl2SG5mWlVDVGppMHJjWWRzM3prMXBvajZTZThpbFVCbkN3TDkyRU42b0NuT2pUQUE9PQ=="
+            },
+            {
+              "name": "X-SES-DKIM-SIGNATURE",
+              "value": "a=rsa-sha256; q=dns/txt; b=f8W+0B6NxLaSSpfIt2eYnVYpMOtKc5LjISLPIDBXhmtCqxgsgWZcAS14DYNAJT9JvDai/VgMG4mafzDIJ4lDn1NUq5oV/58JYtl1uZ0Nd1p8nn4ZjdHy46szxAqFpdpjK6OQWSJmrg2yyAUL+sogyNP1a1CSnFbswxMhmLfPw0w=; c=relaxed/simple; s=6gbrjpgwjskckoa6a5zn6fwqkn67xbtw; d=amazonses.com; t=1750305359; v=1; bh=qMLPNZm0/FJNcm503sERnNUqQ0WyL5DyF4nziJvo8Uk=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;"
+            },
+            {
+              "name": "Received",
+              "value": "by mail-pl1-f173.google.com with SMTP id d9443c01a7336-234d366e5f2so5060895ad.1 for <test@dev.park-direct.jp>; Wed, 18 Jun 2025 20:55:58 -0700 (PDT)"
+            },
+            {
+              "name": "DKIM-Signature",
+              "value": "v=1; a=rsa-sha256; c=relaxed/relaxed; d=nealle.com; s=google; t=1750305357; x=1750910157; darn=dev.park-direct.jp; h=to:date:message-id:subject:mime-version:content-transfer-encoding:from:from:to:cc:subject:date:message-id:reply-to; bh=qMLPNZm0/FJNcm503sERnNUqQ0WyL5DyF4nziJvo8Uk=; b=WfqrsATaiGEi6QsgDMy3Xvc42uis4EgzhZn7KE9UzEWvhMnegrbNJdJIGTHhTnaG7i7zImdEPkODbKaxcS++2MTaWuNfiwPLR2TtySP81WeaAWRrBUEYmHWXaZeaXcq8NFi5fkLecq8Z98PsE/o3oTe1KFCqKbL4GbLlzGaKxiDH5IItAmPFbaZp676hx6rR+MJ09bNw6exl02YW2HtbwUl0qWUWA7MNN44MgAccZmt1D7jeAa0/rdhSTmWNPMoYSIlXszfwE/CXQNaBdLOI6pbsg7JkCgygbU8Uw9shXgJDtias0TwKZll8ntUk3XxN+ZBqZtU9GadOupC01TwcTg=="
+            },
+            {
+              "name": "X-Google-DKIM-Signature",
+              "value": "v=1; a=rsa-sha256; c=relaxed/relaxed; d=1e100.net; s=20230601; t=1750305357; x=1750910157; h=to:date:message-id:subject:mime-version:content-transfer-encoding :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to; bh=qMLPNZm0/FJNcm503sERnNUqQ0WyL5DyF4nziJvo8Uk=; b=vGg8Wh9WeI9KtXDgREA/x+k1ezq/HgSHTFk1QNdWW8DfQHlj7IR9HVsHh96toZH/fT v3lkNZmrTBMx4TnD6HU6OH+25cdnNd/mcnXP5giE3NyqXV/ZB9qGf1qCpa037kL0F0YK l2VG7tjApCnkI2DMUadyVjuQab5mlB+WGY74YQ7PKJG638FRZVBMokTZwT3laaXm44GG w17kFxCsCgoRzR3L4T0jDAl7hDEUsJ28L8h/dXUipOXrLN7pEKBYe78B040Bo2isFn/2 ejLk/Ny4Zjs/g1JeQD6l99bKv1OggCozzE7tl4+Ve7YEgVvvNW2mojIPBDzAsxIwtnog 0ITA=="
+            },
+            {
+              "name": "X-Gm-Message-State",
+              "value": "AOJu0YzfTRyb7abTXmv2Fetcx121O+uRooeAm7QNk+iq0e9S22n2q9bd pBKJmH7D22WiIYIMAg3ooi+hwseBkdDiD1pVdzkJvea+z07+t28s9uLFi6M8EBtfu5PjOt67Upi w2ia1yFo="
+            },
+            {
+              "name": "X-Gm-Gg",
+              "value": "ASbGncub5eWf1qLKjNTonn5nPy5GnMlpw1wrQsnXTtLrK/TJuPcZ8nDKEXgtOkk3+Zr ZSJywqzA6u7Hkzd22DOWDLHjH98hjVOpuLI0WCyvVq4/9swqgMXzniU7EPhVznk4qt3CsiSx+6o F1d4UKNPydOtR/krdHLzjPWuUKnvABUe7iQzJyv0oEnAgRf4kw9kSgjarbP6WmQSVup8MORBUuj mcwaCN06Bs44GTAg5sePDC0b2sxn87YngKXc1TmBM4GopQz+nXmKFAralE2n2Q8sG2wrDh+eyHg SbygDz9aaK6OOlNzU+AOZwfF40zIjGueFapixpoZxqvL3e/kKBrWXXYDMJmd9aTfAiGZuONW1we E1Q4GNkYCc1svOAdVr6tlDQ=="
+            },
+            {
+              "name": "X-Google-Smtp-Source",
+              "value": "AGHT+IG5x6jslfwIfktd/jwLiliZqLy0glCMhCVdSk+YiMsp/TDbCHlR6hdogv1/y2oQwVvzkn21Aw=="
+            },
+            {
+              "name": "X-Received",
+              "value": "by 2002:a17:902:cec4:b0:235:e942:cb9d with SMTP id d9443c01a7336-2366b32a038mr282902495ad.17.1750305357117; Wed, 18 Jun 2025 20:55:57 -0700 (PDT)"
+            },
+            {
+              "name": "Return-Path",
+              "value": "<daichi_morihara@nealle.com>"
+            },
+            {
+              "name": "Received",
+              "value": "from smtpclient.apple ([240b:250:2301:7a00:61a9:1100:1a27:1c36]) by smtp.gmail.com with ESMTPSA id d9443c01a7336-2365d8a1715sm109304995ad.57.2025.06.18.20.55.55 for <test@dev.park-direct.jp> (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128); Wed, 18 Jun 2025 20:55:56 -0700 (PDT)"
+            },
+            {
+              "name": "From",
+              "value": "森原大地 <daichi_morihara@nealle.com>"
+            },
+            {
+              "name": "Content-Type",
+              "value": "text/plain; charset=utf-8"
+            },
+            {
+              "name": "Content-Transfer-Encoding",
+              "value": "base64"
+            },
+            {
+              "name": "Mime-Version",
+              "value": "1.0 (Mac OS X Mail 16.0 (3776.700.51))"
+            },
+            {
+              "name": "Subject",
+              "value": "テスト目的"
+            },
+            {
+              "name": "Message-Id",
+              "value": "<2A6A6BEC-162F-4A3F-986D-F27DBC06C3D9@nealle.com>"
+            },
+            {
+              "name": "Date",
+              "value": "Thu, 19 Jun 2025 12:55:43 +0900"
+            },
+            {
+              "name": "To",
+              "value": "test@dev.park-direct.jp"
+            },
+            {
+              "name": "X-Mailer",
+              "value": "Apple Mail (2.3776.700.51)"
+            }
+          ],
+          "commonHeaders": {
+            "returnPath": "daichi_morihara@nealle.com",
+            "from": [
+              "\"森原大地\" <daichi_morihara@nealle.com>"
+            ],
+            "date": "Thu, 19 Jun 2025 12:55:43 +0900",
+            "to": [
+              "test@dev.park-direct.jp"
+            ],
+            "messageId": "<2A6A6BEC-162F-4A3F-986D-F27DBC06C3D9@nealle.com>",
+            "subject": "テスト目的"
+          }
+        },
+        "receipt": {
+          "timestamp": "2025-06-19T03:55:58.500Z",
+          "processingTimeMillis": 753,
+          "recipients": [
+            "test@dev.park-direct.jp"
+          ],
+          "spamVerdict": {
+            "status": "PASS"
+          },
+          "virusVerdict": {
+            "status": "PASS"
+          },
+          "spfVerdict": {
+            "status": "PASS"
+          },
+          "dkimVerdict": {
+            "status": "PASS"
+          },
+          "dmarcVerdict": {
+            "status": "PASS"
+          },
+          "action": {
+            "type": "Lambda",
+            "functionArn": "arn:aws:lambda:us-east-1:131151490157:function:lambda-pd-dev-forward-mail-to-zendesk",
+            "invocationType": "Event"
+          }
+        }
+      }
+    }
+  ]
+}

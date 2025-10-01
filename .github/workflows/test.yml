@@ -48,6 +48,17 @@ jobs:
       id-token: write
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # 3.5.2
+    - name: Replace feature prefix placeholder
+      shell: bash
+      run: |
+        ENV_VARS_FEAT=""NEXT_PUBLIC_BACKEND_API_URL"="https://<<feature_prefix>>-api.feat.park-direct.jp","NEXT_PUBLIC_SITE_HOSTING_URL"="https://<<feature_prefix>>.feat.onedaypark.jp""
+        SUB_DOMAIN="https://<<feature_prefix>>.feat.onedaypark.jp"
 
-      - uses: ./.github/actions/set-env-variables
+        echo $ENV_VARS_FEAT
+        echo $SUB_DOMAIN
+
+
+        
+        echo "ENV_VARIABLES_FOR_FEAT_BACKEND=${ENV_VARS_FEAT//<<feature_prefix>>/zxxxxxxxx}" >> $GITHUB_ENV
+        echo "SUB_DOMAIN_PREFIX=${$SUB_DOMAIN//<<feature_prefix>>/zxxxxxxxx}" >> $GITHUB_ENV
+

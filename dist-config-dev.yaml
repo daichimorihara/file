@@ -1,0 +1,100 @@
+DistributionConfig:
+  Aliases:
+    Items:
+    - biz-dev.park-direct.jp
+    Quantity: 1
+  CacheBehaviors:
+    Quantity: 0
+  CallerReference: 5b5ff3c8-323b-9276-79ec-edd7c4fe78dc
+  Comment: ''
+  ContinuousDeploymentPolicyId: ''
+  CustomErrorResponses:
+    Items:
+    - ErrorCachingMinTTL: 0
+      ErrorCode: 403
+      ResponseCode: '200'
+      ResponsePagePath: /index.html
+    - ErrorCachingMinTTL: 0
+      ErrorCode: 404
+      ResponseCode: '200'
+      ResponsePagePath: /index.html
+    Quantity: 2
+  DefaultCacheBehavior:
+    AllowedMethods:
+      CachedMethods:
+        Items:
+        - HEAD
+        - GET
+        Quantity: 2
+      Items:
+      - HEAD
+      - GET
+      Quantity: 2
+    Compress: true
+    DefaultTTL: 86400
+    FieldLevelEncryptionId: ''
+    ForwardedValues:
+      Cookies:
+        Forward: none
+      Headers:
+        Quantity: 0
+      QueryString: false
+      QueryStringCacheKeys:
+        Quantity: 0
+    FunctionAssociations:
+      Quantity: 0
+    LambdaFunctionAssociations:
+      Quantity: 0
+    MaxTTL: 31536000
+    MinTTL: 0
+    ResponseHeadersPolicyId: de36decc-5a0e-44a5-b8c7-adf212cc6178
+    SmoothStreaming: false
+    TargetOriginId: origin1
+    TrustedKeyGroups:
+      Enabled: false
+      Quantity: 0
+    TrustedSigners:
+      Enabled: false
+      Quantity: 0
+    ViewerProtocolPolicy: redirect-to-https
+  DefaultRootObject: index.html
+  Enabled: true
+  HttpVersion: http2
+  IsIPV6Enabled: true
+  Logging:
+    Bucket: ''
+    Enabled: false
+    IncludeCookies: false
+    Prefix: ''
+  OriginGroups:
+    Quantity: 0
+  Origins:
+    Items:
+    - ConnectionAttempts: 3
+      ConnectionTimeout: 10
+      CustomHeaders:
+        Quantity: 0
+      DomainName: pd-biz-front-dev.s3.ap-northeast-1.amazonaws.com
+      Id: origin1
+      OriginAccessControlId: ''
+      OriginPath: ''
+      OriginShield:
+        Enabled: false
+      S3OriginConfig:
+        OriginAccessIdentity: origin-access-identity/cloudfront/E1978L6ZK5KNY6
+    Quantity: 1
+  PriceClass: PriceClass_200
+  Restrictions:
+    GeoRestriction:
+      Quantity: 0
+      RestrictionType: none
+  Staging: false
+  ViewerCertificate:
+    ACMCertificateArn: arn:aws:acm:us-east-1:961921042948:certificate/1297e283-d731-42e6-948f-4dc357c8686c
+    Certificate: arn:aws:acm:us-east-1:961921042948:certificate/1297e283-d731-42e6-948f-4dc357c8686c
+    CertificateSource: acm
+    CloudFrontDefaultCertificate: false
+    MinimumProtocolVersion: TLSv1.2_2021
+    SSLSupportMethod: sni-only
+  WebACLId: arn:aws:wafv2:us-east-1:961921042948:global/webacl/pd-biz-frontend-dev/4513b68d-9c20-48ea-8b11-a49c402c7545
+ETag: E3FTMZMBO31H1M
