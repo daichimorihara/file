@@ -56,9 +56,20 @@ jobs:
 
         echo $ENV_VARS_FEAT
         echo $SUB_DOMAIN
+        REPLACEMENT="zxxxxxxxx"
 
+        echo "ENV_VARIABLES_FOR_FEAT_BACKEND=${ENV_VARS_FEAT//<<feature_prefix>>/$REPLACEMENT}" >> $GITHUB_ENV
+        echo "SUB_DOMAIN_PREFIX=${SUB_DOMAIN//<<feature_prefix>>/$REPLACEMENT}" >> $GITHUB_ENV
 
-        
-        echo "ENV_VARIABLES_FOR_FEAT_BACKEND=${ENV_VARS_FEAT//<<feature_prefix>>/zxxxxxxxx}" >> $GITHUB_ENV
-        echo "SUB_DOMAIN_PREFIX=${$SUB_DOMAIN//<<feature_prefix>>/zxxxxxxxx}" >> $GITHUB_ENV
+        echo ${{ env.ENV_VARIABLES_FOR_FEAT_BACKEND }}
+        echo ${{ env.SUB_DOMAIN_PREFIX }}
+# # Define the initial strings with the placeholder
+# ENV_VARS_FEAT="NEXT_PUBLIC_BACKEND_API_URL=https://<<feature_prefix>>-api.feat.park-direct.jp,NEXT_PUBLIC_SITE_HOSTING_URL=https://<<feature_prefix>>.feat.onedaypark.jp"
+# SUB_DOMAIN="https://<<feature_prefix>>.feat.onedaypark.jp"
 
+# # The replacement string
+# REPLACEMENT="zxxxxxxxx"
+
+# # Use Bash parameter expansion to replace the placeholder and set the GitHub environment variables
+# echo "ENV_VARIABLES_FOR_FEAT_BACKEND=${ENV_VARS_FEAT//<<feature_prefix>>/$REPLACEMENT}" >> $GITHUB_ENV
+# echo "SUB_DOMAIN_PREFIX=${SUB_DOMAIN//<<feature_prefix>>/$REPLACEMENT}" >> $GITHUB_ENV
