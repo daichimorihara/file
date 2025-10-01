@@ -3,7 +3,7 @@ name: PD Biz Deployment
 on:
   push:
     branches:
-      - develop
+
   release:
     types: [published]
   # pull_request:
